@@ -14,12 +14,12 @@ const Navbar: React.FC = () => {
     <>
       <ClientNavbar />
       
-      <nav className="bg-white py-5 navbar sticky top-0 z-50 transition-all duration-500 ease-in-out">
+      <nav className="bg-black py-10 navbar sticky top-0 z-50 transition-all duration-500 ease-in-out">
         <div className="flex flex-row items-center justify-between mb-4 transition-all duration-500 ease-in-out relative">
           <button className="sm:hidden text-black pl-2" onClick={toggleSidebar}>
             ☰
           </button>
-          <div className="flex-grow text-center pl-3 ">
+          <div className="flex-grow text-center pl-0 justify-center item-center">
             <a href="/" className="text-black md:text-[35px] tracking-[8px] font-bold transition-transform transform hover:scale-105 ease-in-out duration-500 brand-link">
               AMBIENCE LIFE STYLE
             </a>
