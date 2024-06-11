@@ -1,23 +1,25 @@
-'use client'
+'use client';
 import { useEffect } from 'react';
 
 const ClientNavbar: React.FC = () => {
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 0;
-      const nav = document.querySelector('.navbar'); // Replace .nav with .navbar for Tailwind
+      const nav = document.querySelector('.navbar');
       if (nav) {
-        // Replace classes directly
-        nav.className = `bg-white  navbar sticky top-0 z-50 duration-500  ${isScrolled ? 'text-sm py-5' : 'py-10'}`;
-        nav.querySelector('a')?.classList.toggle('text-[25px]', isScrolled); // Toggle text-lg class based on isScrolled
-        nav.querySelector('a')?.classList.toggle('text-[38px]', !isScrolled); // Toggle text-4xl class based on isScrolled
-        nav.classList.toggle('p-1', !isScrolled); // Add or remove padding class based on isScrolled
-
-   
+        nav.className = `bg-white navbar sticky top-0 z-50 transition-all duration-1000 ease-in-out ${isScrolled ? 'py-3' : 'py-10'}`;
+        const brandLink = nav.querySelector('a');
+        if (brandLink) {
+          brandLink.classList.toggle('text-[30px]', isScrolled);
+          brandLink.classList.toggle('text-[35px]', !isScrolled);
+          brandLink.classList.toggle('tracking-[7px]', isScrolled);
+          brandLink.classList.toggle('tracking-[8px]', !isScrolled);
+        }
       }
     };
 
     window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Trigger initial check
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
