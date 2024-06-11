@@ -27,7 +27,7 @@ const Navbar: React.FC = () => {
         </div>
 
         <div className="hidden sm:flex flex-row items-center text-xs sm:text-sm md:text-lg lg:text-xl justify-center space-x-2 sm:space-x-4 md:space-x-6 lg:space-x-8 pt-3">
-          <a href="#" className="text-black px-2 py-1 rounded duration-500 hover:text-gray-500 transition-colors ease-in-out hover:bg-gray-200">Collections</a>
+          <a href="collections" className="text-black px-2 py-1 rounded duration-500 hover:text-gray-500 transition-colors ease-in-out hover:bg-gray-200">Collections</a>
           <a href="#" className="text-black px-2 py-1 rounded duration-500 hover:text-gray-500 transition-colors ease-in-out hover:bg-gray-200">Search products</a>
           <a href="#" className="text-black px-2 py-1 rounded duration-500 hover:text-gray-500 transition-colors ease-in-out hover:bg-gray-200">Contract</a>
           <a href="#" className="text-black px-2 py-1 rounded duration-500 hover:text-gray-500 transition-colors ease-in-out hover:bg-gray-200">Vidéos</a>
@@ -42,7 +42,7 @@ const Navbar: React.FC = () => {
             </button>
           </div>
           <div className="flex flex-col items-start text-sm space-y-4 pt-3 pl-4">
-            <a href="#" className="text-black px-2 py-1 rounded duration-500 hover:text-gray-500 transition-colors ease-in-out hover:bg-gray-200">Collections</a>
+            <a href="collections" className="text-black px-2 py-1 rounded duration-500 hover:text-gray-500 transition-colors ease-in-out hover:bg-gray-200">Collections</a>
             <a href="#" className="text-black px-2 py-1 rounded duration-500 hover:text-gray-500 transition-colors ease-in-out hover:bg-gray-200">Search products</a>
             <a href="#" className="text-black px-2 py-1 rounded duration-500 hover:text-gray-500 transition-colors ease-in-out hover:bg-gray-200">Contract</a>
             <a href="#" className="text-black px-2 py-1 rounded duration-500 hover:text-gray-500 transition-colors ease-in-out hover:bg-gray-200">Vidéos</a>

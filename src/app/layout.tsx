@@ -16,11 +16,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={mulish.className}>
+      <body className={`${mulish.className} bg-white`}>
         <Layout>
-        {children}
+          {children}
         </Layout>
-        </body>
+      </body>
     </html>
   );
 }
