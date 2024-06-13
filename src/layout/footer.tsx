@@ -1,11 +1,9 @@
-// Footer.js
-
 import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white py-8">
-      <div className="container  justify-between items-center">
+    <footer className="bg-gray-800 text-white py-6 mt-auto">
+      <div className="container justify-between items-center">
         <div className="flex items-center space-x-4">
           <a href="#" className="text-white">About Us</a>
           <a href="#" className="text-white">Contact</a>

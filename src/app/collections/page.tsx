@@ -1,97 +1,428 @@
 "use client"
 
 import { useState } from 'react';
-import Layout from "@/layout/layout";
-
-const images = [
-    { src: "/image.png", caption: "Image 1", description: "ITHAQUE is a creative journey bringing together acrylic and polyester. The rich shades come from the decorative yarns in the warp and weft. With its soft and dense loops, mixed colours, this fabric is designed for seating. ITHAQUE is..." },
-    { src: "/image.png", caption: "Image 2", description: "Description for Image 2" },
-    { src: "/image.png", caption: "Image 3", description: "Description for Image 3" },
-    { src: "/image.png", caption: "Image 4", description: "Description for Image 4" },
-    { src: "/image.png", caption: "Image 5", description: "Description for Image 5" },
-    { src: "/image.png", caption: "Image 6", description: "Description for Image 6" },
-    { src: "/image.png", caption: "Image 7", description: "Description for Image 7" },
-    { src: "/image.png", caption: "Image 8", description: "Description for Image 8" },
-    { src: "/image.png", caption: "Image 9", description: "Description for Image 9" },
-    { src: "/image.png", caption: "Image 10", description: "Description for Image 10" },
-    { src: "/image.png", caption: "Image 11", description: "Description for Image 11" },
-    { src: "/image.png", caption: "Image 12", description: "Description for Image 12" },
-    { src: "/image.png", caption: "Image 13", description: "Description for Image 13" },
-    { src: "/image.png", caption: "Image 14", description: "Description for Image 14" },
-  ];
-
-const IMAGES_PER_PAGE = 8;
+import Image from 'next/image'
 
 export default function Collections() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
-  const indexOfLastImage = currentPage * IMAGES_PER_PAGE;
-  const indexOfFirstImage = indexOfLastImage - IMAGES_PER_PAGE;
-  const currentImages = images.slice(indexOfFirstImage, indexOfLastImage);
-
-  const totalPages = Math.ceil(images.length / IMAGES_PER_PAGE);
-
-  const handlePrevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
-
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl text-black font-bold mb-4 text-center">Collections</h1>
-
-    
-      <div className="flex flex-wrap -mx-2">
-        {currentImages.map((image, index) => (
-          <div key={index} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-2 mb-4">
-            <div
-              className="relative"
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-            >
-              {hoveredIndex === index && (
-                <div className="absolute top-0 left-0 right-0 bottom-0  text-white p-4 opacity-90 z-10 flex items-center justify-center">
-                  <p className="text-sm leading-tight border p-20">{image.description}</p>
-                </div>
-              )}
-              <img
-                src={image.src}
-                alt={`Collection image ${index + 1}`}
-                className={`w-full h-auto object-cover rounded transition-opacity ${
-                  hoveredIndex === index ? 'opacity-50' : 'opacity-100'
-                }`}
-              />
-              <p className="mt-2 text-center text-sm font-medium user-select-none">{image.caption}</p>
-
-            </div>
-          </div>
-        ))}
-      </div>
-      <div className="flex justify-between mt-4">
-        <button
-          onClick={handlePrevPage}
-          disabled={currentPage === 1}
-          className="px-4 py-2 bg-blue-500 text-white rounded disabled:bg-gray-300"
-        >
-          Previous
-        </button>
-        <span className="text-lg">{`Page ${currentPage} of ${totalPages}`}</span>
-        <button
-          onClick={handleNextPage}
-          disabled={currentPage === totalPages}
-          className="px-4 py-2 bg-blue-500 text-white rounded disabled:bg-gray-300"
-        >
-          Next
-        </button>
+    <>
+    <div className="bg-white">
+    <h1 className="text-3xl font-medium font-mulish mb-4 text-center pt-4 text-black mb: pt-10">Collections</h1>
+        <div className="flex flex-col space-y-4 mx-2 pb-16 md:mx-4 lg:mx-4 xl:mx-20">
+            
+          {/* First image group */}
+          <div className="flex flex-col md:flex-row h-auto md:h-[900px] space-y-4 md:space-y-0 md:space-x-2">
+          {/* Images */}
+  <div className="md:w-1/2 pr-4 bg-white-700 h-[400px] md:h-full pl-4 pt-4">
+    <div className="relative group h-full">
+      <img src="/image.png" alt="Image Caption 1" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+        <span className="text-white text-lg">Hovered Text for Image 1</span>
       </div>
     </div>
-  );
+    <figcaption className="text-sm text-center mt-2 text-black">Image Caption 1</figcaption>
+  </div>
+  <div className="md:w-1/2 bg-white-400 h-auto md:h-full flex flex-col">
+    <div className="w-full bg-white-200 h-auto md:h-1/2 flex flex-row space-x-4 p-2">
+      <div className="relative group bg-white-100 p-2 w-1/2">
+        <div className="relative h-[250px] md:h-full">
+          <img src="/image.png" alt="Image Caption 2" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 2</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 2</figcaption>
+      </div>
+      <div className="relative group bg-white-300 p-2 w-1/2">
+        <div className="relative h-[250px] md:h-full">
+          <img src="/image.png" alt="Image Caption 3" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 3</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 3</figcaption>
+      </div>
+    </div>
+    <div className="w-full bg-white-300 h-auto md:h-1/2 flex flex-row space-x-2 p-2 mt-4 md:mt-0">
+      <div className="relative group bg-white-300 p-2 w-1/2">
+        <div className="relative h-[250px] md:h-full">
+          <img src="/image.png" alt="Image Caption 4" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 4</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 4</figcaption>
+      </div>
+      <div className="relative group bg-white-400 p-2 w-1/2">
+        <div className="relative h-[250px] md:h-full">
+          <img src="/image.png" alt="Image Caption 5" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 5</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 5</figcaption>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+        {/* Second image group */}
+        <div className="flex flex-col md:flex-row h-auto md:h-[900px] space-y-4 md:space-y-0 md:space-x-4 pt-5">
+  <div className="md:w-1/2 bg-white-400 h-auto md:h-full flex flex-col space-y-4">
+    <div className="w-full bg-white-200 h-[300px] md:h-1/2 flex flex-row space-x-4 p-2">
+      <div className="relative group bg-white-100 p-2 w-1/2">
+        <div className="relative h-full">
+          <img src="/image.png" alt="Image Caption 6" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 6</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 6</figcaption>
+      </div>
+      <div className="relative group bg-white-300 p-2 w-1/2">
+        <div className="relative h-full">
+          <img src="/image.png" alt="Image Caption 7" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 7</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 7</figcaption>
+      </div>
+    </div>
+    <div className="w-full bg-white-300 h-[300px] md:h-1/2 flex flex-row space-x-4 p-2">
+      <div className="relative group bg-white-300 p-2 w-1/2">
+        <div className="relative h-full">
+          <img src="/image.png" alt="Image Caption 8" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 8</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 8</figcaption>
+      </div>
+      <div className="relative group bg-white-400 p-2 w-1/2">
+        <div className="relative h-full">
+          <img src="/image.png" alt="Image Caption 9" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 9</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 9</figcaption>
+      </div>
+    </div>
+  </div>
+  <div className="md:w-1/2 bg-white-400 h-auto md:h-full flex flex-col space-y-4">
+    <div className="w-full bg-white-200 h-[300px] md:h-1/2 flex flex-row space-x-4 p-2">
+      <div className="relative group bg-white-100 p-2 w-1/2">
+        <div className="relative h-full">
+          <img src="/image.png" alt="Image Caption 10" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 10</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 10</figcaption>
+      </div>
+      <div className="relative group bg-white-300 p-2 w-1/2">
+        <div className="relative h-full">
+          <img src="/image.png" alt="Image Caption 11" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 11</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 11</figcaption>
+      </div>
+    </div>
+    <div className="w-full bg-white-300 h-[300px] md:h-1/2 flex flex-row space-x-4 p-2">
+      <div className="relative group bg-white-300 p-2 w-full">
+        <div className="relative h-full">
+          <img src="/image.png" alt="Image Caption 12" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 12</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 12</figcaption>
+      </div>
+    </div>
+  </div>
+</div>
+
+ {/* third image group */}
+ <div className="flex flex-col md:flex-row h-auto md:h-[900px] space-y-4 md:space-y-0 md:space-x-4 pt-5">
+  <div className="md:w-1/2 bg-white-400 h-auto md:h-full flex flex-col space-y-4">
+    <div className="w-full bg-white-200 h-[300px] md:h-1/2 flex flex-row space-x-4 p-2 pt-4">
+      <div className="relative group bg-white-100 p-2 w-full">
+        <div className="relative h-full">
+          <img src="/image.png" alt="Image Caption 19" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 19</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 13</figcaption>
+      </div>
+    </div>
+    <div className="w-full bg-white-300 h-[300px] md:h-1/2 flex flex-row space-x-4 p-2">
+      <div className="relative group bg-white-300 p-2 w-1/2">
+        <div className="relative h-full">
+          <img src="/image.png" alt="Image Caption 20" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 20</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 14</figcaption>
+      </div>
+      <div className="relative group bg-white-400 p-2 w-1/2">
+        <div className="relative h-full">
+          <img src="/image.png" alt="Image Caption 21" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 21</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 15</figcaption>
+      </div>
+    </div>
+  </div>
+  <div className="md:w-1/2 bg-white-400 h-auto md:h-full flex flex-col space-y-4">
+    <div className="w-full bg-white-200 h-[300px] md:h-1/2 flex flex-row space-x-4 p-2 pt-4">
+      <div className="relative group bg-white-100 p-2 w-full">
+        <div className="relative h-full">
+          <img src="/image.png" alt="Image Caption 22" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 22</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 16</figcaption>
+      </div>
+    </div>
+    <div className="w-full bg-white-300 h-[300px] md:h-1/2 flex flex-row space-x-4 p-2">
+      <div className="relative group bg-white-300 p-2 w-1/2">
+        <div className="relative h-full">
+          <img src="/image.png" alt="Image Caption 23" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 23</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 17</figcaption>
+      </div>
+      <div className="relative group bg-white-400 p-2 w-1/2">
+        <div className="relative h-full">
+          <img src="/image.png" alt="Image Caption 24" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 24</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 18</figcaption>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+   {/* fourth image group */}
+   <div className="flex flex-col md:flex-row h-auto md:h-[900px] space-y-4 md:space-y-0 md:space-x-4 pt-5">
+  <div className="md:w-1/2 bg-white-400 h-auto md:h-full flex flex-col space-y-4">
+    <div className="w-full bg-white-300 h-[300px] md:h-1/2 flex flex-row space-x-4 p-2">
+      <div className="relative group bg-white-300 p-2 w-1/2">
+        <div className="relative h-full">
+          <img src="/image.png" alt="Image Caption 12" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 12</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 19</figcaption>
+      </div>
+      <div className="relative group bg-white-400 p-2 w-1/2">
+        <div className="relative h-full">
+          <img src="/image.png" alt="Image Caption 13" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 13</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 20</figcaption>
+      </div>
+    </div>
+    <div className="w-full bg-white-200 h-[300px] md:h-1/2 flex flex-row space-x-4 p-2">
+      <div className="relative group bg-white-100 p-2 w-full">
+        <div className="relative h-full">
+          <img src="/image.png" alt="Image Caption 14" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 14</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 21</figcaption>
+      </div>
+    </div>
+  </div>
+  <div className="md:w-1/2 bg-white-400 h-auto md:h-full flex flex-col space-y-4">
+    <div className="w-full bg-white-200 h-[300px] md:h-1/2 flex flex-row space-x-4 p-2 pt-2">
+      <div className="relative group bg-white-100 p-2 w-full">
+        <div className="relative h-full">
+          <img src="/image.png" alt="Image Caption 15" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 15</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 22</figcaption>
+      </div>
+    </div>
+    <div className="w-full bg-white-300 h-[300px] md:h-1/2 flex flex-row space-x-4 p-2">
+      <div className="relative group bg-white-300 p-2 w-1/2">
+        <div className="relative h-full">
+          <img src="/image.png" alt="Image Caption 16" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 16</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 23</figcaption>
+      </div>
+      <div className="relative group bg-white-400 p-2 w-1/2">
+        <div className="relative h-full">
+          <img src="/image.png" alt="Image Caption 17" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 17</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 24</figcaption>
+      </div>
+    </div>
+  </div>
+</div>
+
+       {/* fifth image group */}
+      {/* Fifth image group */}
+<div className="flex flex-col md:flex-row h-auto md:h-[900px] space-y-4 md:space-y-0 md:space-x-4 pt-5">
+  <div className="md:w-1/2 bg-white-400 h-auto md:h-full flex flex-col space-y-4">
+    <div className="w-full bg-white-200 h-[300px] md:h-1/2 flex flex-row space-x-4 p-2">
+      <div className="relative group bg-white-100 p-2 w-full">
+        <div className="relative h-full">
+          <img src="/image.png" alt="Image Caption 12" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 12</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 25</figcaption>
+      </div>
+    </div>
+    <div className="w-full bg-white-300 h-[300px] md:h-1/2 flex flex-row space-x-4 p-2">
+      <div className="relative group bg-white-300 p-2 w-1/2">
+        <div className="relative h-full">
+          <img src="/image.png" alt="Image Caption 13" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 13</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 26</figcaption>
+      </div>
+      <div className="relative group bg-white-400 p-2 w-1/2">
+        <div className="relative h-full">
+          <img src="/image.png" alt="Image Caption 14" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 14</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 27</figcaption>
+      </div>
+    </div>
+  </div>
+  <div className="md:w-1/2 bg-white-400 h-auto md:h-full flex flex-col space-y-4">
+    <div className="w-full bg-white-200 h-[300px] md:h-1/2 flex flex-row space-x-4 p-2">
+      <div className="relative group bg-white-100 p-2 w-full">
+        <div className="relative h-full">
+          <img src="/image.png" alt="Image Caption 15" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 15</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 28</figcaption>
+      </div>
+    </div>
+    <div className="w-full bg-white-300 h-[300px] md:h-1/2 flex flex-row space-x-4 p-2">
+      <div className="relative group bg-white-300 p-2 w-1/2">
+        <div className="relative h-full">
+          <img src="/image.png" alt="Image Caption 16" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 16</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 29</figcaption>
+      </div>
+      <div className="relative group bg-white-400 p-2 w-1/2">
+        <div className="relative h-full">
+          <img src="/image.png" alt="Image Caption 17" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 17</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 30</figcaption>
+      </div>
+    </div>
+  </div>
+</div>
+
+{/* Sixth image group */}
+<div className="flex flex-col md:flex-row h-auto md:h-[900px] space-y-4 md:space-y-0 md:space-x-4 pt-5">
+  <div className="md:w-1/2 bg-white-400 h-auto md:h-full flex flex-col space-y-4">
+    <div className="w-full bg-white-300 h-[300px] md:h-1/2 flex flex-row space-x-4 p-2">
+      <div className="relative group bg-white-300 p-2 w-1/2">
+        <div className="relative h-full">
+          <img src="/image.png" alt="Image Caption 18" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 18</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 31</figcaption>
+      </div>
+      <div className="relative group bg-white-400 p-2 w-1/2">
+        <div className="relative h-full">
+          <img src="/image.png" alt="Image Caption 19" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 19</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 32</figcaption>
+      </div>
+    </div>
+    <div className="w-full bg-white-300 h-[300px] md:h-1/2 flex flex-row space-x-4 p-2">
+      <div className="relative group bg-white-300 p-2 w-1/2">
+        <div className="relative h-full">
+          <img src="/image.png" alt="Image Caption 20" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 20</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 33</figcaption>
+      </div>
+      <div className="relative group bg-white-400 p-2 w-1/2">
+        <div className="relative h-full">
+          <img src="/image.png" alt="Image Caption 21" className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 21</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 34</figcaption>
+      </div>
+    </div>
+  </div>
+  <div className="md:w-1/2 bg-white-400 h-[440px] md:h-[440px] flex flex-col">
+    <div className="w-full bg-white-200 h-[440px] md:h-[440px] flex flex-row space-x-4 p-2">
+      <div className="relative group bg-white-100 p-2 w-full">
+        <div className="relative h-full">
+          <img src="/image.png" alt="Image Caption 22" className="w-full h-[405px] object-cover transition-opacity duration-300 hover:opacity-75" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+            <span className="text-white text-lg">Hovered Text for Image 22</span>
+          </div>
+        </div>
+        <figcaption className="text-sm text-center mt-2 text-black">Image Caption 35</figcaption>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+      </div>
+      </div>
+    </>
+  )
 }
