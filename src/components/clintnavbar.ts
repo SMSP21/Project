@@ -7,7 +7,7 @@ const ClientNavbar: React.FC = () => {
       const nav = document.querySelector('.navbar');
       if (nav) {
         nav.className = `bg-white text-white navbar sticky top-0 z-50 transition-all duration-1500 ease-in-out ${
-          isScrolled ? 'pt-4 py-0 md:py-4 ' : 'pt-4 py-4 md:py-10'
+          isScrolled ? 'pt-2 py-0 md:py-4 ' : 'pt-4 py-4 md:py-10'
         }`;
 
         const brandLink = nav.querySelector('.brand-link');
